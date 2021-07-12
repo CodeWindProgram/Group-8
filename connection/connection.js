@@ -19,7 +19,7 @@ client.connect().then((err,res)=>{
     
     
 }).catch((e)=>console.log(e))
-/*
+
 const query1=`CREATE TABLE online_test_schema.administrator
 (
     admin_id serial NOT NULL ,
@@ -456,6 +456,5 @@ try{
     console.log(e) 
     client.end()
      
-*/
-
+}
 export default client
