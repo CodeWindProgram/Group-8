@@ -46,7 +46,5 @@
 @rahulmistry438 - rahulmistry438@gmail.com
 - Peform Backup and restoring of database tables, vacumming, reindexing and encryption of data.
 
-
-@KunalBhujbal
-kunalbhujbal41035@gmail.com 
-Removal of redundant data.
+@KunalBhujbal - kunalbhujbal41035@gmail.com 
+- Peform Removal of redundant data.
