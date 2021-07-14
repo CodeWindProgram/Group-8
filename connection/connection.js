@@ -441,16 +441,31 @@ try{
     console.log(e)  
 }
 
-const query31=`VACUUM (VERBOSE, ANALYZE)`
+const query31=`SELECT s_name, COUNT(s_name) FROM online_test_schema.student GROUP BY s_name  HAVING COUNT( s_name )> 1 ORDER BY s_name;`
 try{
-    await client.query(query31)
+    const result =await client.query(query31)
+    console.log(result.rowCount)
+}catch(e){
+    console.log(e)  
+}
+
+const query32=`DELETE FROM online_test_schema.student WHERE s_name IN (SELECT s_name FROM  (SELECT s_name,ROW_NUMBER() OVER( PARTITION BY s_name ORDER BY s_name ) AS row_num from online_test_schema.student) t where t.row_num >1 );`
+try{
+    await client.query(query32)
+    console.log('deleting the duplication')
+}catch(e){
+    console.log(e)  
+}
+const query33=`VACUUM (VERBOSE, ANALYZE)`
+try{
+    await client.query(query33)
     console.log('Vacuum has been done')
 }catch(e){
     console.log(e)  
 }
-const query32=`REINDEX DATABASE postgres`
+const query34=`REINDEX DATABASE postgres`
 try{
-    await client.query(query32)
+    await client.query(query34)
     console.log('Reindexing has been done')
 }catch(e){
     console.log(e) 

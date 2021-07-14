@@ -258,3 +258,28 @@ CREATE TABLE online_test_schema.r_exam_module
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 );
+--To view if the Redundant data is present or not:-
+
+SELECT
+name_of_column,
+COUNT(name_of_column)
+FROM
+table_name
+GROUP BY
+name_of_column;
+HAVING
+COUNT( name_of_column )> 1
+ORDER BY
+name_of_column;
+
+--To remove the redundant data:-
+
+DELETE FROM table_name
+WHERE name_of_column IN
+(SELECT name_of_column
+FROM 
+(SELECT name_of_column,
+ROW_NUMBER() OVER( PARTITION BY name_of_column
+ORDER BY name_of_column ) AS row_num 
+from table_name) t 
+where t.row_num >1 );
